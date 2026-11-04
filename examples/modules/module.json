@@ -1,0 +1,10 @@
+{
+  "id": "example/note",
+  "version": "1.0.0",
+  "name": "笔记卡片",
+  "description": "可独立安装的静态 HTML/CSS 模块",
+  "html": "<article class=\"example-note\"><h2>一个新想法</h2><p>双击修改这段文字。</p></article>",
+  "css": ".example-note { padding: 24px; color: #254f59; background: #f1f6f7; border: 1px solid #8ba9b1; border-radius: 12px; }",
+  "permissions": [],
+  "dependencies": {}
+}
