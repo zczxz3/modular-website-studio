@@ -1,0 +1,9 @@
+import {useRef,useState} from 'react';
+import type {Project} from '../core/types';
+import {assetUrl} from '../core/io';
+import {imageAssets,assetUsage} from '../core/assets';
+interface Props {project:Project;canUse:boolean;locked:boolean;onImport:(files:File[])=>Promise<void>;onUse:(path:string)=>void;onDelete:(path:string)=>void;}
+export default function AssetLibrary(p:Props){const input=useRef<HTMLInputElement>(null),[busy,setBusy]=useState(false),[query,setQuery]=useState(''),[error,setError]=useState('');
+return <div className="asset-library"><button className="wide-button" disabled={p.locked||busy} onClick={()=>input.current?.click()}>{busy?'正在导入…':'批量导入图片'}</button><input ref={input} type="file" hidden multiple accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" onChange={async e=>{const files=Array.from(e.target.files||[]);e.target.value='';if(!files.length)return;setBusy(true);setError('');try{await p.onImport(files);}catch(e){setError((e as Error).message);}finally{setBusy(false);}}}/>
+<input aria-label="搜索素材" placeholder="搜索素材文件名…" value={query} onChange={e=>setQuery(e.target.value)}/><p className="hint">先选中画布图片，再使用素材替换。引用中的素材不会删除；重复图片会复用。</p>{error&&<p role="alert">{error}</p>}
+{imageAssets(p.project).filter(path=>path.toLowerCase().includes(query.toLowerCase())).map(path=>{const refs=assetUsage(p.project,path);return <article className="asset-item" key={path}><img src={assetUrl(p.project,p.project.entry,'../'.repeat(p.project.entry.split('/').length-1)+path)} alt="素材预览"/><code title={path}>{path.split('/').pop()}</code><small>{refs.length?`${refs.length} 个文件引用`:'未使用'}</small><div><button disabled={p.locked||busy||!p.canUse} onClick={()=>p.onUse(path)}>使用图片</button><button disabled={p.locked||busy||!!refs.length} onClick={()=>p.onDelete(path)}>删除素材</button></div></article>;})}</div>;}
