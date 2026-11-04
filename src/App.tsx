@@ -4,7 +4,7 @@ import { sampleProject } from './core/sample';
 import { elements, getElement, nodeAtOffset, sourceText } from './core/source';
 import { ownStyle, sourceAttribute } from './core/commands';
 import { download, exportWebsite, parseProjectJson, projectFromFiles, readZip, saveProject } from './core/io';
-import { BUILTINS, installModule, moduleFromZip } from './core/modules';
+import { BUILTINS, installModule, insertModule, moduleFromZip } from './core/modules';
 import { STYLE_FILE, type EditCommand, type Project, type StudioModule } from './core/types';
 import Canvas, { type Inspection } from './components/Canvas';
 import { previewTree } from './preview/document';
@@ -41,13 +41,11 @@ export default function App(){
     store.replace(p);setFile(p.entry);setSelected('');setNotice('项目已打开。导入脚本在编辑模式不会执行。');
   }catch(e){setNotice((e as Error).message);}finally{if(input.current)input.current.value='';if(folder.current)folder.current.value='';}}
   function useModule(module:StudioModule){run(()=>{
-    let p=store.getSnapshot().project;const already=p.modules.find(m=>m.id===module.id);if(!already)p=installModule(p,module);
+    const p=store.getSnapshot().project;
     const parent=current&&current.loc.endTag&&!['h1','h2','h3','p','button','span','a'].includes(current.tag)?current:nodes.find(n=>n.tag==='main')||nodes[0];
     if(!parent)throw new Error('没有可插入的容器。');
-    const path=`modules/${module.id.replaceAll('/','-')}.css`;
-    if(!p.files[path]){p={...p,files:{...p.files,[path]:{kind:'text',content:module.css}}};const href='../'.repeat(p.entry.split('/').length-1)+path;p={...p,files:{...p.files,[p.entry]:{kind:'text',content:sourceText(p).replace(/<\/head\s*>/i,`<link rel="stylesheet" href="${href}">\n</head>`)}}};}
     // Module registration, CSS and DOM insertion form one history transaction.
-    const temp=new ProjectStore(p);temp.dispatch([{type:'insert',parentId:parent.id,html:module.html}]);store.replace(temp.getSnapshot().project,'添加模块');setNotice(`已添加「${module.name}」`);
+    store.replace(insertModule(p,module,parent.id),'添加模块');setNotice(`已添加「${module.name}」`);
   });}
   function moveSibling(direction:number){if(!current)return;const siblings=nodes.filter(n=>n.parentId===current.parentId);const i=siblings.findIndex(n=>n.id===selected);if(!current.parentId||i+direction<0||i+direction>=siblings.length)return;dispatch([{type:'move',id:selected,parentId:current.parentId,beforeId:direction<0?siblings[i-1].id:siblings[i+2]?.id}]);}
   const style=(property:string,value:string)=>dispatch([{type:'style',id:selected,property,value}]);
