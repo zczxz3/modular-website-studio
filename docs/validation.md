@@ -5,6 +5,7 @@ Date: **2026-11-04**. This record distinguishes executed checks from future cove
 ## Executed locally
 
 - `npm run check`: TypeScript passed; **14 tests passed in 2 files**.
+- `npm audit`: **0 reported vulnerabilities** after overriding Monaco's transitive DOMPurify dependency to `3.4.17`. The lockfile records the exact package; audit results are time-dependent.
 - `npm run build`: production bundle built successfully. Monaco/TypeScript worker size warnings are expected and remain a performance limitation.
 - Source round trip: original source bytes (apart from identity attributes), text escaping, generated CSS, DOM reparenting, undo/redo, save/load equality and ZIP export/reimport.
 - Error recovery: invalid HTML/CSS/JS, duplicate identity, CSS declaration injection, non-leaf text edits and stale revisions.
@@ -28,13 +29,19 @@ Date: **2026-11-04**. This record distinguishes executed checks from future cove
 
 ## Automated browser suite
 
-`e2e/editor.spec.ts` contains Chromium tests for the complete save/download/open/export flow, Monaco input, structural dragging, and loading exported bytes at a separate origin with no Studio runtime. The GitHub Actions workflow runs these tests on each push/PR. Check the actual workflow result; a test's presence is not a passing result.
+**Passed in GitHub Actions:** [run 41768512621](https://github.com/zczxz3/modular-website-studio/actions/runs/41768512621), source commit `8484b100e9d52f7ea76392c9f8811efea884da6e`, Node 22, Chromium on Ubuntu. TypeScript, all 14 core tests and production build passed; **2 browser tests passed in 7.2 seconds without retries**. Dependency installation also reported 0 vulnerabilities.
+
+`e2e/editor.spec.ts` executed the complete visual/code edit → drag/resize → invalid CSS recovery → project download → reload → reopen downloaded file → ZIP export → load exported bytes at a separate origin → operate the original JavaScript flow. Its second test executed real Monaco input and structured drag ordering. The exported page used no Studio runtime.
+
+The first run exposed ambiguous alert selection and a pointer target hidden beneath Monaco's rendered lines. Tests now target project diagnostics specifically and focus Monaco through keyboard input. Assertions and acceptance scope were retained.
+
+The workflow runs on pushes and PRs; future commits should be assessed from their own CI result. This record covers the source commit above and subsequent documentation-only changes.
 
 ## Infrastructure limits in this session
 
-- Browser download tooling failed to return completed download files and subsequently timed out. The downloaded-project reopening and standalone exported-site **browser** flow is therefore not marked passed. ZIP bytes and save/load/export round trips are covered by executed core tests.
+- Browser download tooling failed to return completed download files and subsequently timed out. That cloud-browser tooling limitation was subsequently covered by the passing automated Chromium save/download/reopen/export flow above.
 - A local-module ZIP browser upload attempt was interrupted; module validation and registry are covered by core tests, but that file-picker interaction is not marked passed.
-- GitHub repository creation succeeded, but GitHub integration tree writes returned `403 Resource not accessible by integration`, even without workflow files. Publishing therefore uses the authorized GitHub web upload workflow. Check the repository Actions page for the actual CI result.
+- GitHub repository creation succeeded, but GitHub integration tree writes returned `403 Resource not accessible by integration`, even without workflow files. All 39 source, documentation, example and workflow files were published through the authorized GitHub web upload workflow and verified against local Git blob hashes. The later CI run above passed.
 
 ## Remaining verification scope
 

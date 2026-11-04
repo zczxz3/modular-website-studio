@@ -13,7 +13,8 @@ The goal is a combined visual canvas, source editor, installable module platform
 - [x] Atomic visual commands, undo/redo, explicit save, reopening, source/asset export
 - [x] Install static HTML/CSS module ZIPs; add modules and uninstall library entries
 - [x] Core round-trip and keyed DOM lifecycle tests
-- [ ] Validate browser E2E CI across supported Chromium versions and resolve any CI failures
+- [x] Execute Chromium CI for visual/code edits, save/download/reopen and standalone export
+- [ ] Expand the browser/version matrix beyond the tested Chromium runner
 - [ ] Clipboard cut/copy/paste, multi-select, guides, snapping and alignment
 - [ ] Complete CSS cascade provenance, attribute catalogue and layout-specific resize rules
 - [ ] Incremental worker parsing and coalesced typing history for larger projects
