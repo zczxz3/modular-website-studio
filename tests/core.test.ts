@@ -1,7 +1,7 @@
 import { describe,it,expect } from 'vitest';
 import { ProjectStore } from '../src/core/store';
 import { sampleProject } from '../src/core/sample';
-import { elements, sourceText, normalizeProject, validateFile } from '../src/core/source';
+import { attr, elements, sourceText, normalizeProject, validateFile } from '../src/core/source';
 import { applyCommand, ownStyle } from '../src/core/commands';
 import { saveProject, parseProjectJson, exportWebsite, projectFromFiles, readZip, safePath } from '../src/core/io';
 import { BUILTINS, installModule, validateModule } from '../src/core/modules';
@@ -62,6 +62,47 @@ describe('Source → canvas → source → save → reopen → export',()=>{
   });
   it('duplicates with fresh identities and preserves source attributes',()=>{
     const s=fresh(),id=find(s,'button').id;s.dispatch([{type:'duplicate',id}]);const buttons=elements(sourceText(s.getSnapshot().project)).filter(n=>n.tag==='button');expect(buttons.length).toBe(2);expect(buttons[0].id).not.toBe(buttons[1].id);
+  });
+  it('duplicates nested generated styles and internal references without rewriting source literals',()=>{
+    const raw=`<!doctype html><html><head><link rel="stylesheet" href="module.css"></head><body>
+<!-- untouched outside -->
+<p id="outside">External description</p><main>
+<article class="example-card" id='card' data-mws-reveal="enter">
+  <h2 id="heading">A title with id="panel" in its text</h2>
+  <label for="email">Email</label><input id="email" aria-describedby="hint outside">
+  <p id="hint">Help</p><button aria-controls="panel" aria-labelledby="heading outside">Open</button>
+  <div id="panel"><a href="#panel">Inside</a><a href="#outside">Outside</a><a href="other.html#panel">Other page</a></div>
+  <!-- id="panel" and data-mws-id="literal" stay literal -->
+  <script>window.marker=' id="panel" data-mws-id="literal"';</script>
+</article>
+<!-- untouched after -->
+</main></body></html>`;
+    const s=new ProjectStore({...sampleProject,files:{'index.html':{kind:'text',content:raw},'module.css':{kind:'text',content:'.example-card { background: white; }'}}});
+    const article=find(s,'article'),heading=find(s,'h2'),input=find(s,'input');
+    s.dispatch([{type:'style',id:article.id,property:'padding',value:'31px'},{type:'style',id:heading.id,property:'color',value:'rgb(12, 34, 56)'},{type:'style',id:input.id,property:'width',value:'220px'}]);
+    s.editFile('studio.css',sourceText(s.getSnapshot().project,'studio.css')+`\n/* keep responsive context */\n@media (max-width: 600px) { [data-mws-id="${input.id}"] { width: 160px; } }`);
+    const before=s.getSnapshot().project,original=elements(sourceText(before)).find(n=>n.id===article.id)!;
+    s.dispatch([{type:'duplicate',id:article.id}]);const after=s.getSnapshot().project;
+    const nodes=elements(sourceText(after)),articles=nodes.filter(n=>n.tag==='article'),copied=articles[1];
+    const descendants=nodes.filter(n=>n.loc.startOffset>=copied.loc.startOffset&&n.loc.endOffset<=copied.loc.endOffset);
+    const copiedHeading=descendants.find(n=>n.tag==='h2')!,copiedInput=descendants.find(n=>n.tag==='input')!,copiedHint=descendants.find(n=>n.tag==='p')!,copiedPanel=descendants.find(n=>n.tag==='div')!;
+    expect(ownStyle(after,copied.id,'padding')).toBe('31px');expect(ownStyle(after,copiedHeading.id,'color')).toBe('rgb(12, 34, 56)');expect(ownStyle(after,copiedInput.id,'width')).toBe('160px');
+    expect(sourceText(after,'studio.css')).toContain(`@media (max-width: 600px) { [data-mws-id="${input.id}"] { width: 160px; } [data-mws-id="${copiedInput.id}"] { width: 160px; } }`);
+    expect(attr(descendants.find(n=>n.tag==='label')!.node,'for')).toBe(attr(copiedInput.node,'id'));
+    expect(attr(copiedInput.node,'aria-describedby')).toBe(attr(copiedHint.node,'id')+' outside');
+    const copiedButton=descendants.find(n=>n.tag==='button')!;
+    expect(attr(copiedButton.node,'aria-controls')).toBe(attr(copiedPanel.node,'id'));
+    expect(attr(copiedButton.node,'aria-labelledby')).toBe(attr(copiedHeading.node,'id')+' outside');
+    expect(descendants.filter(n=>n.tag==='a').map(n=>attr(n.node,'href'))).toEqual(['#'+attr(copiedPanel.node,'id'),'#outside','other.html#panel']);
+    expect(attr(copied.node,'data-mws-reveal')).toBe('enter');
+    const ids=nodes.map(n=>attr(n.node,'id')).filter(Boolean);expect(new Set(ids).size).toBe(ids.length);
+    const html=sourceText(after),copy=html.slice(copied.loc.startOffset,copied.loc.endOffset);
+    expect(copy).toContain('<!-- id="panel" and data-mws-id="literal" stay literal -->');expect(copy).toContain("window.marker=' id=\"panel\" data-mws-id=\"literal\"';");expect(copy).toContain('A title with id="panel" in its text');
+    expect(html).toBe(sourceText(before).slice(0,original.loc.endOffset)+'\n'+copy+sourceText(before).slice(original.loc.endOffset));
+    expect(after.files['module.css']).toEqual(before.files['module.css']);
+    s.undo();expect(s.getSnapshot().project).toEqual(before);s.redo();expect(s.getSnapshot().project).toEqual(after);
+    s.dispatch([{type:'style',id:copiedHeading.id,property:'color',value:'blue'}]);expect(ownStyle(s.getSnapshot().project,heading.id,'color')).toBe('rgb(12, 34, 56)');expect(ownStyle(s.getSnapshot().project,copiedHeading.id,'color')).toBe('blue');
+    expect(parseProjectJson(saveProject(s.getSnapshot().project))).toEqual(s.getSnapshot().project);
   });
 });
 describe('Imports and trust boundaries',()=>{
