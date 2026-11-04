@@ -13,11 +13,16 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - run: npm run build
+      - run: npm run package
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
-        if: failure()
+        if: always()
         with:
-          name: playwright-failure
+          name: playwright-results
           path: test-results/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: studio-source-and-web
+          path: release/
+          if-no-files-found: error
