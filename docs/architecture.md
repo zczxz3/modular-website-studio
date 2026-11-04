@@ -36,6 +36,10 @@ The initial import adds `data-mws-id` immediately after each explicit opening ta
 
 Visual styles are explicit overrides in `studio.css`. The command creates a real link from every page to this stylesheet. Original CSS stays editable in its own file; inspector values and computed values are intentionally separate. This avoids pretending a computed value necessarily came from one directly editable declaration.
 
+During dragging, the bridge temporarily moves the real DOM node or applies inline dimensions/translation for live feedback. It restores that temporary state before dispatching one revision-guarded transaction on release. Escape, pointer cancellation, leaving the viewport, blur or an incoming source update restores the original position and style without writing source. Pointer capture begins only after the movement threshold so click and double-click editing retain their targets. No-op structure drops create no history entry.
+
+Duplication patches fresh stable identities and regular HTML IDs into the copied source slice, remaps internal HTML references, and clones generated override rules, including conditional rule context. It intentionally does not rewrite arbitrary imported CSS/JS selectors. Single-HTML export derives a separate output through source ranges and resource embedding; it never rewrites the canonical project to the exported form.
+
 ## Runtime and lifecycle
 
 The editing iframe has `sandbox="allow-scripts"` without `allow-same-origin`. Only the bundled bridge is allowed by its nonce CSP. Source scripts, active attributes and embedded documents are omitted from the editable projection. Parent messages are checked against iframe `WindowProxy`, random channel and payload shape. Project code cannot call editor commands because it is absent from that iframe.
@@ -43,6 +47,8 @@ The editing iframe has `sandbox="allow-scripts"` without `allow-same-origin`. On
 The bridge builds real nodes with `createElement` / `createTextNode`, reuses keyed elements, updates changed attributes and reorders children using DOM operations. It does not overwrite the page with `innerHTML`. Listeners on retained elements survive updates and cross-parent moves; this has a DOM test. The first iframe creation uses `srcdoc` for the trusted bridge shell only.
 
 The explicit runtime preview is a separate sandboxed document and intentionally restarts when sources change. It has no command bridge and blocks network calls, forms, navigation privileges and parent access. Project JS state is not part of the visual editing model. Future JS/GSAP/Three adapters must own setup/dispose, event listeners, RAF loops, scroll ownership and GPU resource release.
+
+The local tabs/accordion runtime is included as a project script with declarative source attributes. It owns per-instance listeners and restores runtime-added attributes on disposal. The editor displays all panels without executing the project runtime. Explicit preview permits classic data scripts so its own standalone HTML exports can be reimported and operated; the editing iframe remains nonce-only and excludes all project scripts.
 
 ## Performance bounds and next work
 

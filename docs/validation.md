@@ -2,6 +2,8 @@
 
 Date: **2026-11-04**. This record distinguishes executed checks from future coverage.
 
+This page records the original source-editor baseline and its historical CI run. For subsequent work, see [portfolio validation](portfolio-validation.md) and the current [drag/component and single-HTML validation](drag-html-validation.md); the baseline browser result does not certify those later changes.
+
 ## Executed locally
 
 - `npm run check`: TypeScript passed; **14 tests passed in 2 files**.
