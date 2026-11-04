@@ -11,30 +11,46 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "check": "tsc -b && vitest run"
+    "check:resources": "node scripts/check-bundled-resources.mjs",
+    "check": "npm run check:checkout && npm run check:resources && tsc -b && vitest run && node --test scripts/distribution.test.mjs",
+    "start": "npm run dev",
+    "serve": "node scripts/serve.mjs",
+    "check:checkout": "node scripts/check-checkout.mjs",
+    "package": "npm run build && node scripts/package-release.mjs"
   },
   "dependencies": {
+    "@animxyz/core": "0.6.7",
     "@monaco-editor/react": "^4.7.0",
     "acorn": "^8.15.0",
+    "cropperjs": "2.3.1",
     "fflate": "^0.8.2",
+    "grapick": "0.1.13",
+    "lucide-react": "1.68.0",
     "monaco-editor": "^0.55.0",
+    "moveable": "0.53.0",
     "parse5": "^8.0.1",
     "postcss": "^8.5.6",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "selecto": "1.26.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
+    "@tailwindcss/cli": "4.3.4",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
     "jsdom": "^27.1.0",
+    "tailwindcss": "4.3.4",
     "typescript": "~5.9.3",
     "vite": "^7.2.0",
     "vitest": "^4.0.7"
   },
   "overrides": {
     "dompurify": "3.4.17"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }
