@@ -1,0 +1,8 @@
+{
+  "package": "@animxyz/core",
+  "version": "0.6.7",
+  "files": {
+    "animxyz.css": "a32397535a2d1889a0c83f3db2970f17505f7589b7cea469a2f4d1f58bfa3d57",
+    "LICENSE.txt": "a21909da0f5fcf2b8ffbfb6fb31d74eee08dad41ebabca56a3465a03ca8b7fee"
+  }
+}
