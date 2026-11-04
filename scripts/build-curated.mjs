@@ -1,0 +1,16 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import postcss from 'postcss';
+const root=new URL('../src/resources/curated/',import.meta.url);
+let cta=await readFile(new URL('upstream/tailblocks.txt',root),'utf8');
+cta=cta.slice(cta.indexOf('<section'),cta.indexOf('</section>')+10).replaceAll('className','class').replace(/class=\{`([^`]+)`\}/g,(_m,c)=>'class="'+c.replaceAll('${props.theme}','teal')+'"').replace(/Slow-carb[\s\S]*?forage\./,'把你的想法变成下一件作品。').replace('>\n            Button','>\n            联系我').replace('<button ','<a href="mailto:hello@example.com" ').replace('</button>','</a>');
+let stats=await readFile(new URL('upstream/hyperui.txt',root),'utf8');stats=stats.match(/<body[^>]*>([\s\S]*)<\/body>/)[1].replace(/<(path|circle|rect|line|polyline|polygon)(\s[^>]*?)\s*\/>/g,'<$1$2></$1>').replaceAll('Profit','作品记录').replaceAll('Increase:','增加：').replaceAll('Decrease:','变化：').replaceAll('$404.32','12').replaceAll('$240.94','8').replaceAll('from ','此前 ');
+const samples=[{id:'curated/tailblocks-cta',name:'联系行动区 · Tailblocks',html:cta},{id:'curated/hyperui-stats',name:'成果数据区 · HyperUI',html:'<section class="grid gap-4 md:grid-cols-3 p-6">'+stats+'</section>'}];
+await writeFile(new URL('templates.html',root),samples.map(s=>s.html).join('\n'));
+await writeFile(new URL('input.css',root),'@import "tailwindcss/theme";\n@import "tailwindcss/utilities" source(none);\n@source "./templates.html";\n');
+execFileSync(process.execPath,['node_modules/@tailwindcss/cli/dist/index.mjs','-i','src/resources/curated/input.css','-o','src/resources/curated/compiled.css','--minify'],{stdio:'inherit'});
+const css=postcss.parse(await readFile(new URL('compiled.css',root),'utf8'));
+css.walkRules(rule=>{if(rule.parent?.type==='atrule'&&/keyframes$/.test(rule.parent.name))return;rule.selector=rule.selector.split(',').map(s=>s.trim()===':root'||s.trim()===':host'?'.mws-curated':':where(.mws-curated) '+s.trim()).join(',');});
+await writeFile(new URL('compiled.css',root),css.toString().replaceAll('--tw-','--mws-p1-')+'\n.mws-curated,.mws-curated *{box-sizing:border-box;min-width:0}.mws-curated :where(h1,h2,h3,p){margin:0}.mws-curated svg{display:block;max-width:100%}');
+const compiled='/* Tailblocks / HyperUI adapted under MIT\n'+await readFile(new URL('upstream/tailblocks-LICENSE.txt',root),'utf8')+'\n'+await readFile(new URL('upstream/hyperui-LICENSE.txt',root),'utf8')+' */\n'+await readFile(new URL('compiled.css',root),'utf8');
+await writeFile(new URL('modules.json',root),JSON.stringify(samples.map(s=>({...s,css:compiled,version:'1.0.0',description:'固定开源来源 · 已编译的响应式明亮区块',html:'<div class="mws-curated" data-ws-block="'+s.name+'">'+s.html+'</div>',permissions:[],dependencies:{}})),null,2)+'\n');
