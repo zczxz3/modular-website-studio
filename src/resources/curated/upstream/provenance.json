@@ -1,0 +1,30 @@
+[
+  {
+    "file": "tailblocks.txt",
+    "repository": "mertJF/tailblocks",
+    "revision": "34943e63da6a2d45a55a076ea18312a1c1098957",
+    "path": "src/blocks/cta/light/a.js",
+    "sha256": "af44e7c3170009a85e4c1ffa12cced2b6ec47fe003b4cf328bf1eaad2f83e900"
+  },
+  {
+    "file": "tailblocks-LICENSE.txt",
+    "repository": "mertJF/tailblocks",
+    "revision": "34943e63da6a2d45a55a076ea18312a1c1098957",
+    "path": "LICENSE",
+    "sha256": "3f351f3e7c277b05bc6084e583567c2adf9e1f4d5a465ee063cbeddc3b4c43d3"
+  },
+  {
+    "file": "hyperui.txt",
+    "repository": "markmead/hyperui",
+    "revision": "637323c8d3046645ac5f28edc2074d18f22a2b94",
+    "path": "public/examples/application/stats/1.html",
+    "sha256": "b7e70204724c5824a84f27cca0103578271b8ed55c3670653115b8aaeb5c77cb"
+  },
+  {
+    "file": "hyperui-LICENSE.txt",
+    "repository": "markmead/hyperui",
+    "revision": "637323c8d3046645ac5f28edc2074d18f22a2b94",
+    "path": "LICENSE",
+    "sha256": "60e0bb845a95da072acc1ada114cf8ce325347ed9d5f802d8d7fd9b511248f98"
+  }
+]

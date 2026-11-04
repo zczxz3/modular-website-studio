@@ -4,6 +4,7 @@ export interface StudioModule {
   html: string; css: string; permissions: string[]; dependencies: Record<string, string>;
 }
 export interface Project {
+  id?: string;
   format: 'mws-project'; version: 1; name: string; entry: string;
   files: Record<string, ProjectFile>; modules: StudioModule[];
 }
@@ -21,8 +22,9 @@ export type EditCommand =
   | {type:'text'; id:string; text:string}
   | {type:'style'; id:string; property:string; value:string}
   | {type:'attribute'; id:string; name:string; value:string}
+  | {type:'remove-attribute'; id:string; name:string}
   | {type:'move'; id:string; parentId:string; beforeId?:string}
-  | {type:'insert'; parentId:string; html:string}
+  | {type:'insert'; parentId:string; html:string; beforeId?:string}
   | {type:'delete'; id:string}
   | {type:'duplicate'; id:string};
 export const ID_ATTR = 'data-mws-id';

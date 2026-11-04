@@ -27,6 +27,7 @@ export class ProjectStore {
     this.commit(transaction(this.state.project,commands),'可视化编辑');
   }
   replace(project:Project,label='打开项目'){this.commit(normalizeProject(project),label);}
+  load(project:Project){const p=normalizeProject(project);this.past=[];this.future=[];this.restore(p,'项目已打开');}
   discardDraft(){this.state={...this.state,draft:this.state.project,diagnostics:[],label:'已恢复有效代码'};this.notify();}
   undo(){if(this.state.diagnostics.length){this.discardDraft();return;}const p=this.past.pop();if(!p)return;this.future.push(this.state.project);this.restore(p,'撤销');}
   redo(){const p=this.future.pop();if(!p)return;this.past.push(this.state.project);this.restore(p,'重做');}

@@ -1,0 +1,25 @@
+{
+  "package": "aos",
+  "version": "2.3.4",
+  "repository": "https://github.com/michalsnik/aos",
+  "revision": "1c7043c10a777d0ddcd2abfd08187619ac555353",
+  "license": "MIT",
+  "modified": false,
+  "files": {
+    "aos.js": {
+      "source": "dist/aos.js",
+      "gitBlob": "86dc4bface73c4c3fc07d3ea2741e2ce05ad82a3",
+      "sha256": "a5005b2e414770fd5ccb40bc221a12771966d02b5c1f9c89da48bd8e3811d377"
+    },
+    "aos.css": {
+      "source": "dist/aos.css",
+      "gitBlob": "66923fe6a1ee9b53b7136997ac07748c1874b033",
+      "sha256": "1aa8845fd06e475aefe733d4e55b36a92fcd487975049c8172341827ac9cc03e"
+    },
+    "LICENSE.txt": {
+      "source": "LICENSE",
+      "gitBlob": "5a4b0bd6468a7a85f552edcf11647ca56ee3ad4b",
+      "sha256": "4d1f9c2c1c7597f1d3bb3c29aaa4e832cfc264737bccac42543486f6d202ea28"
+    }
+  }
+}

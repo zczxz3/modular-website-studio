@@ -7,11 +7,14 @@ The goal is a combined visual canvas, source editor, installable module platform
 - [x] Create/open static HTML projects, folder/ZIP import, multiple imported pages
 - [x] Select source-backed DOM nodes and locate their HTML
 - [x] Structural reordering / nesting and separate CSS-translation free mode
+- [x] Live drag reflow, cancel/revert, one undo per gesture and copied local styles
 - [x] Resize handles, text editing, id/class, source CSS overrides, computed-style inspection
 - [x] Monaco HTML/CSS/JS/TS editing; bidirectional selection and rendering
 - [x] Error diagnostics, last-valid preview, stale-operation rejection
 - [x] Atomic visual commands, undo/redo, explicit save, reopening, source/asset export
 - [x] Install static HTML/CSS module ZIPs; add modules and uninstall library entries
+- [x] Built-in tabs / accordion with source-backed default state and standalone runtime
+- [x] Supported current-page single HTML export, CSS/JS/assets embedding and HTML reimport
 - [x] Core round-trip and keyed DOM lifecycle tests
 - [x] Execute Chromium CI for visual/code edits, save/download/reopen and standalone export
 - [ ] Expand the browser/version matrix beyond the tested Chromium runner
@@ -21,6 +24,16 @@ The goal is a combined visual canvas, source editor, installable module platform
 - [ ] Touch/mobile authoring and keyboard drag equivalents
 
 Acceptance: open/create real HTML → select → drag/resize/edit → inspect changed source → edit code → inspect live canvas → save → reopen → export → operate exported website without Studio.
+
+## First student website
+
+The current delivery target is a student's first Chinese portfolio: homepage template → name → two uploaded covers → complete-card ordering → title effect → 390px preview → independent website. Local implementation and remaining release evidence are tracked in [student acceptance](student-first-site-validation.md); real usability checks use the [five-student protocol](student-usability-check.md). Browser verification, five-person results and an actual online entry remain release gates, not completed claims.
+
+## Resource repository integration
+
+- Current: fixed local examples and a typed static-module provider interface.
+- Deferred: `website-assets` repository loading, synchronization, installation updates and version upgrades until the upstream format stabilizes.
+- Continue validating the first-portfolio workflow against the local examples in the meantime.
 
 ## Phase 2 — adapters and motion
 

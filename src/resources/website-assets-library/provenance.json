@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "repository": "zczxz3/website-assets",
+  "revision": "cdaabdccfa9e4391e37450ef197e22e5f4eea83d",
+  "archive": "studio-components.zip",
+  "gitBlob": "a4e0022b0f62d3d46d28a748581bc6a111f40eaf",
+  "sha256": "e015138f31c82efd3313eb7ffecb61ef28f3b6e0d3c652f24d8ef3746ef1b562",
+  "moduleCount": 31,
+  "policy": "Bundled immutable static snapshot. Runtime tarball and planned effects are excluded from the installable catalog. No network synchronization or automatic project upgrades."
+}

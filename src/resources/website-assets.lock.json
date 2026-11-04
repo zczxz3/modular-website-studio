@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "repository": "zczxz3/website-assets",
+  "revision": "4f1d40d4f5c77ed42bb4baa55fc86722267690e9",
+  "sourceFiles": {
+    "foundation-modules.json": "3fabbd88210e670077f899f158346667a4e9fb59",
+    "FOUNDATION_GUIDE.md": "da34750c822e9af1bfba13d3756dbe0684a34074",
+    "foundation-showcase.mws.json": "5297b9be67f7cb0dd58105453a728fb1cbf660a8",
+    "queue-pack.mjs": "943ee052e3881f8fc465535dbe21bfb1dd377043",
+    "queue-portfolio.mws.json": "efb86dc87be7f66e9e9eb77052deeecbf915a28c",
+    "LICENSE": "c3867cb3a40d9efa9e356f7f58e12ba03ce7f482",
+    "components/text-reveal.mjs": "7f1350be9317bef642fcf9ec2d45c2d45fc12534"
+  },
+  "modules": [
+    {
+      "id": "foundation/navigation",
+      "version": "1.0.0"
+    },
+    {
+      "id": "foundation/card",
+      "version": "1.0.0"
+    },
+    {
+      "id": "foundation/grid",
+      "version": "1.0.0"
+    },
+    {
+      "id": "foundation/button-fill",
+      "version": "1.0.0"
+    },
+    {
+      "id": "queue/project-card",
+      "version": "1.0.0"
+    }
+  ],
+  "outputs": {
+    "src/resources/foundation.ts": "3af0b6b4dffa31d8f5cbe6000d2a9f49f2f2920574d5998b4777b32faa2f6fa4",
+    "src/resources/queue-card.ts": "9e48038baff573ce9e6b272a3cf9796f7758910a2039e732d18b3236f722c282",
+    "src/resources/website-assets.ts": "d2a4f957673a324391cde555b9ae23e9ddb4d5640df9de7ff0166f8bf2c80d8f",
+    "src/resources/website-assets-LICENSE.txt": "3bc7a747d201d2f9c109a956bc99fa54558e190b25f8bf70fa598d306a2ba0d4"
+  },
+  "integrationStatus": "deferred"
+}

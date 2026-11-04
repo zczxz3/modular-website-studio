@@ -1,6 +1,8 @@
 import { unzipSync, zipSync, strFromU8, strToU8 } from 'fflate';
 import type { Project, ProjectFile } from './types';
 import { normalizeProject, sourceText } from './source';
+import { validateModule } from './module-validation';
+export { validateModuleShape } from './module-validation';
 
 export const MAX_BYTES=20*1024*1024;
 const textExtension=/\.(html?|css|m?js|ts|json|txt|md|svg)$/i;
@@ -27,15 +29,10 @@ export function parseProjectJson(raw:string):Project {
   if(Object.keys(p.files).length>500)throw new Error('项目文件过多。');
   for(const [path,file]of Object.entries(p.files)){safePath(path);if(!file||!['text','asset'].includes(file.kind)||typeof file.content!=='string'||(file.kind==='asset'&&!/^data:[\w/+.-]+;base64,[A-Za-z0-9+/=]*$/.test(file.content)))throw new Error(`文件无效：${path}`);}
   if(!p.files[p.entry]||! /\.html?$/i.test(p.entry))throw new Error('HTML 入口不存在。');
-  // Installed modules are inert data, but validate their shape before rendering their UI.
-  p.modules=p.modules.map(validateModuleShape);
+  if(p.id!==undefined&&(typeof p.id!=='string'||!/^[\w-]{1,80}$/.test(p.id)))throw new Error('项目标识无效。');
+  // Saved module manifests are untrusted, just like locally installed ZIPs.
+  p.modules=p.modules.map(validateModule);
   return normalizeProject(p);
-}
-export function validateModuleShape(value:unknown){
-  const m=value as import('./types').StudioModule;
-  if(!m||!/^[@a-z0-9][a-z0-9@/_.-]{1,80}$/.test(m.id)||!/^\d+\.\d+\.\d+$/.test(m.version)||typeof m.name!=='string'||typeof m.html!=='string'||typeof m.css!=='string'||!Array.isArray(m.permissions)||!m.dependencies||typeof m.dependencies!=='object'||Array.isArray(m.dependencies))throw new Error('模块 manifest 无效。');
-  if(m.permissions.length||Object.keys(m.dependencies).length)throw new Error('首版只支持无运行权限、无外部依赖的 HTML/CSS 模块。');
-  return {...m,description:typeof m.description==='string'?m.description:''};
 }
 export function projectFromFiles(input:Record<string,Uint8Array>,name='Imported website'):Project {
   let paths=Object.keys(input);if(!paths.length)throw new Error('项目为空。');

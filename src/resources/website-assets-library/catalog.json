@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "purpose": "Offline distribution index; not an additional Studio API. Install individual ZIPs or open the native project JSON.",
+  "studio_contract": "static-module-v1",
+  "modules": [
+    {
+      "id": "foundation/field",
+      "name": "Text field",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--field.zip",
+      "category": "Forms",
+      "limitations": "No save or network submission.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "a111bc0fbfa22b5f36f9c800bd4c92fbbb51da6fed2221ac72fece49a1e52023"
+    },
+    {
+      "id": "foundation/textarea",
+      "name": "Multiline field",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--textarea.zip",
+      "category": "Forms",
+      "limitations": "No autosave or character counter.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "5b4115fc4835895e5f4ee3f7c0b666e5283ab245240edfa97fdb97035050942b"
+    },
+    {
+      "id": "foundation/select",
+      "name": "Native select",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--select.zip",
+      "category": "Forms",
+      "limitations": "The selection is local; no filtering logic.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "95a22ae24c0fab4fe2fd206570d8d04a57babf91ad53a1d84bb9e3927843f44d"
+    },
+    {
+      "id": "foundation/checklist",
+      "name": "Checkbox checklist",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--checklist.zip",
+      "category": "Forms",
+      "limitations": "No persistence; repeated instances keep independent native state.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "5ec59f4bf528bbb9d16b4842db00510bbaffa2dcc5216605e450ed331619a82c"
+    },
+    {
+      "id": "foundation/switch",
+      "name": "Preference switch",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--switch.zip",
+      "category": "Forms",
+      "limitations": "Does not request notification permissions.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "c69ea4a911fb1b56a3bce169c6f76af6a12c3dc416cbb0941af5ec61ad7a91b1"
+    },
+    {
+      "id": "foundation/range",
+      "name": "Range control",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--range.zip",
+      "category": "Forms",
+      "limitations": "No live numeric output or linked effect.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "e47444b3240a69786574cd243ee38c60ab7bfde3ea4ec089b9302acf5464c418"
+    },
+    {
+      "id": "foundation/form-grid",
+      "name": "Responsive field group",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--form-grid.zip",
+      "category": "Forms",
+      "limitations": "Fieldset only; no submission button or backend.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "761ddcefcbddff86d2d3e75243aa0cf7b0c8fb1eaa092169ad6078d610e1b188"
+    },
+    {
+      "id": "foundation/accordion",
+      "name": "Disclosure stack",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--accordion.zip",
+      "category": "Disclosure",
+      "limitations": "Sections open independently; not an ARIA tabs widget.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "9c6c83bc0a92939f00ace0d5e5f36caa56cae2163fc8bdccf6d9a75bb8bd874e"
+    },
+    {
+      "id": "foundation/help",
+      "name": "Inline help disclosure",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--help.zip",
+      "category": "Disclosure",
+      "limitations": "Not a tooltip or modal; no focus trap is needed.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "6434e09f142e73877bf52bc585cc5fe40ce41fd6b9b09dd88db1aaf5d5540d55"
+    },
+    {
+      "id": "foundation/navigation",
+      "name": "Compact navigation",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--navigation.zip",
+      "category": "Navigation",
+      "limitations": "Replace example.com links before publishing; not an ARIA application menu.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "119bbbe0e6d81c0f9828c1a2e3861722dc0e63a3d739dabb2501310a5c12fa19"
+    },
+    {
+      "id": "foundation/breadcrumb",
+      "name": "Breadcrumb trail",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--breadcrumb.zip",
+      "category": "Navigation",
+      "limitations": "Replace example links; not a router.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "9f87d420bf9caafb6196374910cd45a2d537642f5807c46fb4f9e7cedc92682e"
+    },
+    {
+      "id": "foundation/card",
+      "name": "Editorial card",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--card.zip",
+      "category": "Cards",
+      "limitations": "Illustration is procedural; replace the example link.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "083f1b3605b445fcb28af18a640c944e726b4803792390ed71f558085bef8b6f"
+    },
+    {
+      "id": "foundation/stat",
+      "name": "Metric card",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--stat.zip",
+      "category": "Cards",
+      "limitations": "Static example value, not live analytics.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "2081964ef746afecbeb4386b3d460c5b8acb56169f6e1ae5fba0ea99775963e0"
+    },
+    {
+      "id": "foundation/pricing",
+      "name": "Plan card",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--pricing.zip",
+      "category": "Cards",
+      "limitations": "Sample pricing only; does not start a purchase.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "d922ea881b0ef5740ed860dd29b1ef1af03108aa6313036e88e5ab021f77751b"
+    },
+    {
+      "id": "foundation/table",
+      "name": "Data table",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--table.zip",
+      "category": "Data",
+      "limitations": "No sort, pagination or live data.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "566c2bdba46a0485459317137080ff1df76ed8fed9e17f42f25189eb22d5b6d6"
+    },
+    {
+      "id": "foundation/progress",
+      "name": "Determinate progress",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--progress.zip",
+      "category": "Feedback",
+      "limitations": "No auto-increment; editor must synchronize visible percentage and value.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "834ba239bfd08b172d5eafe990c3629b7f1ba5c3ab0b403c2c6438cce9c0c29f"
+    },
+    {
+      "id": "foundation/spinner",
+      "name": "Loading indicator",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--spinner.zip",
+      "category": "Feedback",
+      "limitations": "Illustrative status, not connected to a request. Remove when loading completes.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "fc7677f9cb5db37924ff91ffdfa03d714d8ae82af4d188a50c7f55d6ff4f9870"
+    },
+    {
+      "id": "foundation/skeleton",
+      "name": "Loading skeleton",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--skeleton.zip",
+      "category": "Feedback",
+      "limitations": "Static loading example; no automatic completion.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "74a91d0515bef8c7d214fc6d032dd92e1c006e5000496bd8517e1ef5b6f1756c"
+    },
+    {
+      "id": "foundation/notice",
+      "name": "Information notice",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--notice.zip",
+      "category": "Feedback",
+      "limitations": "Not an ephemeral toast; no dismiss control or live announcement.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "182cf8572fadb5db676bde1d169d8e7555e0374f6af4129636f6aa71ac139dff"
+    },
+    {
+      "id": "foundation/grid",
+      "name": "Responsive content grid",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--grid.zip",
+      "category": "Layout",
+      "limitations": "No drag-and-drop logic inside the exported component.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "875e997ac58e5792ad66d7259c9a7833cdbd0f143c914f2a5e00052819a14875"
+    },
+    {
+      "id": "foundation/button-fill",
+      "name": "Fill sweep",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-fill.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "7fdfaf764005002c27e0f3926b3887f0b5808917e938f49839740ede8bee3677"
+    },
+    {
+      "id": "foundation/button-border",
+      "name": "Border echo",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-border.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "5bc895b3c9ce13ab503d7cae799311e9c97f46772742c3000df4851b9b1db3bd"
+    },
+    {
+      "id": "foundation/button-wave",
+      "name": "Liquid sweep",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-wave.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "01a9d925566b25c25600a37b2f35519e161dc2e234be4f239b66b5948a6c084f"
+    },
+    {
+      "id": "foundation/button-blob",
+      "name": "Soft corners",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-blob.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "7ff60e52af88e5035306e08c9d2cadd904a6407af20435f4a7d1a1c199a58ecd"
+    },
+    {
+      "id": "foundation/button-shine",
+      "name": "Light sweep",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-shine.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "bb8d329f72024f547c9d6fa7b8b2e5efaed95ec33a1ff02c93b251b868bf7d80"
+    },
+    {
+      "id": "foundation/button-halo",
+      "name": "Orbit border",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-halo.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "9b2efc3d6660243cfd2c790c11249cbbfa7175560b08d372b6b058040be1e503"
+    },
+    {
+      "id": "foundation/button-roll",
+      "name": "Text roll",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-roll.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "6e4400dce3ec8dae2aa7304525e594eb707bd36f175537f5c17fa75be6c8a769"
+    },
+    {
+      "id": "foundation/button-stagger",
+      "name": "Letter lift",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-stagger.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "9806aa7735d2e7817aef744cbe2192df60f0b59bf4ee0fe2813f2e00a29bba5f"
+    },
+    {
+      "id": "foundation/button-depth",
+      "name": "Press depth",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-depth.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "35ba8d40db843850a8307a38411916c251025e31411f83c48eb3010c11a07871"
+    },
+    {
+      "id": "foundation/button-back",
+      "name": "Back arrow",
+      "kind": "studio-static-module-v1",
+      "path": "installable/foundation--button-back.zip",
+      "category": "Buttons",
+      "limitations": "Visual button only; bind application actions separately. For roll edit both copies; for stagger update visible letters and aria-label together.",
+      "editable": "Text, --mf-accent, --mf-radius, --mf-space and --mf-duration.",
+      "runtime_required": false,
+      "sha256": "4fdd111e9859d226bb695d2ac893bc1727c63777755927cafbed213a9ca413cd"
+    },
+    {
+      "id": "queue/project-card",
+      "name": "Queue \u2014 Project card",
+      "kind": "studio-static-module-v1",
+      "path": "installable/queue--project-card.zip",
+      "category": "Portfolio",
+      "limitations": "Static original project card; navigation href is editable and requires a real destination.",
+      "editable": "Heading, description, link and scoped CSS.",
+      "runtime_required": false,
+      "sha256": "3107fda452bf62efc03a98bafb2c596401f53d9fd7ecf6109dc30d52a32f7324"
+    }
+  ],
+  "runtime_library": {
+    "path": "runtime/zczxz3-website-assets-motion-0.4.0.tgz",
+    "studio_installable": false,
+    "reason": "Current Studio manifests reject scripts, dependencies and lifecycle hooks."
+  },
+  "planned_effects": [
+    {
+      "id": "E01",
+      "name": "Fade and rise",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E02",
+      "name": "Mask reveal",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E03",
+      "name": "Hand-drawn annotation",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E04",
+      "name": "Character and word stagger",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E05",
+      "name": "Typewriter and erase",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E06",
+      "name": "Number counter",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E07",
+      "name": "Card tilt and glare",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E08",
+      "name": "Cursor trail",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E09",
+      "name": "Success confetti",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E10",
+      "name": "Reading progress",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E11",
+      "name": "Image parallax",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E12",
+      "name": "Shared-element transition",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E13",
+      "name": "Flowing mesh gradient",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E14",
+      "name": "Paper and film grain",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E15",
+      "name": "Ink edge",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E16",
+      "name": "SVG stroke drawing",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E17",
+      "name": "SVG contour morph",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E18",
+      "name": "Variable font axes",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E19",
+      "name": "Linked particle background",
+      "status": "queued",
+      "studio_installable": false
+    },
+    {
+      "id": "E20",
+      "name": "Frosted glass panel",
+      "status": "queued",
+      "studio_installable": false
+    }
+  ]
+}
