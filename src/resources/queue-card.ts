@@ -1,0 +1,12 @@
+// Frozen local examples from zczxz3/website-assets@4f1d40d4f5c77ed42bb4baa55fc86722267690e9.
+// Preserve source and MIT notices; repository integration is deferred (docs/resource-sync.md).
+export const queueCard = {
+  "id": "queue/project-card",
+  "version": "1.0.0",
+  "name": "Queue — Project card",
+  "description": "An original static project card. Edit text, colors and href in Studio.",
+  "html": "<article class=\"qr-project\"><div class=\"qr-cover\" aria-hidden=\"true\"></div><h2>Field notes</h2><p>A quiet place for ideas and observations.</p><a href=\"#projects\">Explore this project →</a></article>",
+  "css": "/*\nMIT License\n\nCopyright (c) 2026 website-assets contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\nThis license covers original implementation code only. Reference screenshots,\nthird-party sites, fonts, imagery, datasets and linked repositories retain\ntheir own rights and licenses.\n*/\n.qr-project{font:16px/1.6 system-ui,sans-serif;color:#182434;border:1px solid #d7e1e9;border-radius:16px;overflow:hidden;max-width:440px;padding:18px;background:#fff}.qr-project .qr-cover{height:200px;background:radial-gradient(ellipse at 55% 60%,#ffffff50,transparent 60%),#176f68;border-radius:12px}.qr-project h2{font-size:24px;margin:18px 0 4px}.qr-project p{color:#526173}.qr-project a{color:#2463eb;display:inline-block;min-height:44px;padding-block:10px}.qr-project a:focus-visible{outline:3px solid #2463eb;outline-offset:4px}",
+  "permissions": [],
+  "dependencies": {}
+};
