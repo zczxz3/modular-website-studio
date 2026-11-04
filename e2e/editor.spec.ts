@@ -17,8 +17,8 @@ test('visual edits, code edits, error recovery, save/reopen and exported site',a
   await page.mouse.move(hb.x+hb.width/2,hb.y+hb.height/2);await page.mouse.down();await page.mouse.move(hb.x+hb.width/2+64,hb.y+hb.height/2+24,{steps:10});await page.mouse.up();
   await expect(page.getByLabel('width',{exact:true})).toHaveValue(/px$/);
   await page.getByRole('button',{name:'分屏',exact:true}).click();await page.getByRole('button',{name:'styles.css',exact:true}).click();
-  const validCss=await source.inputValue();await source.fill('body { color: red;');await expect(page.getByRole('alert')).toContainText('保留最后有效画布');await expect(title).toHaveText('Code edit');
-  await source.fill(validCss);await expect(page.getByRole('alert')).toHaveCount(0);
+  const validCss=await source.inputValue();await source.fill('body { color: red;');await expect(page.locator('.diagnostics[role="alert"]')).toContainText('保留最后有效画布');await expect(title).toHaveText('Code edit');
+  await source.fill(validCss);await expect(page.locator('.diagnostics[role="alert"]')).toHaveCount(0);
   const save=page.waitForEvent('download');await page.getByRole('button',{name:'保存项目',exact:true}).click();const saved=await save;const savedPath=await saved.path();if(!savedPath)throw new Error('Missing saved project');
   await page.reload();await page.getByRole('button',{name:'重新打开已保存',exact:true}).click();await expect(title).toHaveText('Code edit');
   const open=page.waitForEvent('filechooser');await page.getByRole('button',{name:'打开项目',exact:true}).click();await(await open).setFiles(savedPath);await expect(title).toHaveText('Code edit');
@@ -32,7 +32,7 @@ test('visual edits, code edits, error recovery, save/reopen and exported site',a
 test('Monaco input and structured drag ordering',async({page})=>{
   await page.goto('/');const frame=page.frameLocator('iframe[title="实时可编辑网页"]');await expect(frame.locator('h1')).toBeVisible();
   await page.getByRole('button',{name:'styles.css',exact:true}).click();const monaco=page.getByRole('textbox',{name:'项目源代码'});
-  await monaco.click();await monaco.press('ControlOrMeta+End');await page.keyboard.insertText('\nh1 { color: rgb(10, 20, 30); }');await expect(frame.locator('h1')).toHaveCSS('color','rgb(10, 20, 30)');
+  await monaco.press('ControlOrMeta+End');await page.keyboard.insertText('\nh1 { color: rgb(10, 20, 30); }');await expect(frame.locator('h1')).toHaveCSS('color','rgb(10, 20, 30)');
   await page.getByRole('button',{name:'画布',exact:true}).click();await page.getByLabel('画布缩放',{exact:true}).selectOption('0.65');
   const articles=frame.locator('article');const first=await articles.nth(0).boundingBox(),second=await articles.nth(1).boundingBox();if(!first||!second)throw new Error('Missing cards');
   // Grab container padding (not its text) and drop in the preceding card's left half.
