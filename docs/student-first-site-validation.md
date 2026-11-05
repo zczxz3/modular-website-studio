@@ -1,5 +1,7 @@
 # 学生的第一个独立网站
 
+> 阶段记录：以下测试数量、分支和范围属于记录时的版本。当前功能与发布状态见 [项目现状](status.md)，操作入口见 [新手指南](guides/first-website.md)。
+
 本轮在 `d73c326` 之后的本地 `feat/student-first-site` 分支实现；远端和在线发布状态见 [仓库汇总](repository-overview.md)。本页记录工程验收，不替代真实学生试用。
 
 ## 可操作流程

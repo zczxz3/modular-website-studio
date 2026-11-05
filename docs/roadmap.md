@@ -1,57 +1,38 @@
-# Product scope and roadmap
+# 路线图
 
-The goal is a combined visual canvas, source editor, installable module platform and animation workstation. Correct source round trips come before advanced visual polish.
+[功能现状](status.md) · [开发导航](development/README.md) · [更新日志](../CHANGELOG.md)
 
-## Phase 1 — working alpha
+目标保持为：让第一次打开的学生，从模板出发，修改自己的内容、图片和特效，导出能独立运行的网站。先提升现有操作体验，再扩展平台。
 
-- [x] Create/open static HTML projects, folder/ZIP import, multiple imported pages
-- [x] Select source-backed DOM nodes and locate their HTML
-- [x] Structural reordering / nesting and separate CSS-translation free mode
-- [x] Live drag reflow, cancel/revert, one undo per gesture and copied local styles
-- [x] Resize handles, text editing, id/class, source CSS overrides, computed-style inspection
-- [x] Monaco HTML/CSS/JS/TS editing; bidirectional selection and rendering
-- [x] Error diagnostics, last-valid preview, stale-operation rejection
-- [x] Atomic visual commands, undo/redo, explicit save, reopening, source/asset export
-- [x] Install static HTML/CSS module ZIPs; add modules and uninstall library entries
-- [x] Built-in tabs / accordion with source-backed default state and standalone runtime
-- [x] Supported current-page single HTML export, CSS/JS/assets embedding and HTML reimport
-- [x] Core round-trip and keyed DOM lifecycle tests
-- [x] Execute Chromium CI for visual/code edits, save/download/reopen and standalone export
-- [ ] Expand the browser/version matrix beyond the tested Chromium runner
-- [ ] Clipboard cut/copy/paste, multi-select, guides, snapping and alignment
-- [ ] Complete CSS cascade provenance, attribute catalogue and layout-specific resize rules
-- [ ] Incremental worker parsing and coalesced typing history for larger projects
-- [ ] Touch/mobile authoring and keyboard drag equivalents
+## 已有基础
 
-Acceptance: open/create real HTML → select → drag/resize/edit → inspect changed source → edit code → inspect live canvas → save → reopen → export → operate exported website without Studio.
+| 阶段 | 已交付范围 | 说明 |
+| --- | --- | --- |
+| 新手闭环 | 中文作品集、姓名/封面、排序、手机预览、保存/导出 | 已整合到主分支 |
+| P0 | Cropper.js 裁剪、Grapick 渐变 | [范围](p0-visual-tools.md) |
+| P1 | Tailblocks/HyperUI 精选区块 | 不代表整套上游库 |
+| P2 | Moveable + Selecto 多选、变换、吸附和有限对齐 | 最多 6 个元素；复杂坐标变换仍受限 |
+| P3 | AnimXYZ 组合预设与已有 AOS | 尚无完整时间轴 |
+| P4 | 本地批量素材、去重、引用保护 | 未引入云上传服务 |
+| 自有组件 | 31 个固定版 website-assets 模块 | 同步与升级继续后置 |
+| 仓库交付 | 完整源码、使用版打包、文档入口与发行汇总 | 本次整理范围 |
 
-## First student website
+## 下一轮：首次使用者完成作品
 
-The current delivery target is a student's first Chinese portfolio: homepage template → name → two uploaded covers → complete-card ordering → title effect → 390px preview → independent website. Local implementation and remaining release evidence are tracked in [student acceptance](student-first-site-validation.md); real usability checks use the [five-student protocol](student-usability-check.md). Browser verification, five-person results and an actual online entry remain release gates, not completed claims.
+| 顺序 | 目标 | 验收 |
+| --- | --- | --- |
+| 1 | 按 [五人试用表](student-usability-check.md) 记录真实首次停顿 | 每人记录第一次卡住的位置、最终导出文件、次日是否恢复 |
+| 2 | 按实际问题简化首次创作、保存与导出提示 | 无需读开发文档，独立完成中文作品集闭环 |
+| 3 | 优化资源选择与风格一致性 | 新手能找到匹配的区块，明确可添加与仅演示的区别 |
+| 4 | 改善大图导入、初次加载和草稿容量体验 | 用实际项目记录耗时、体积和保存失败恢复结果 |
+| 5 | 扩展浏览器、键盘与无障碍验收 | 建立准确环境矩阵，不把 Chromium 结果套用到所有浏览器 |
 
-## Resource repository integration
+## 接口保持预留
 
-- Current: fixed local examples and a typed static-module provider interface.
-- Deferred: `website-assets` repository loading, synchronization, installation updates and version upgrades until the upstream format stabilizes.
-- Continue validating the first-portfolio workflow against the local examples in the meantime.
+远程资源同步、显式升级/回滚、JS 模块的 mount/update/destroy、资源释放和权限协议先稳定契约。未经适配的 JS/WebGL 演示不作为已安装组件；上游更新不能自动覆盖学生工程。
 
-## Phase 2 — adapters and motion
+## 后续平台阶段
 
-- GSAP keyed animation configuration, timeline, easing and event/scroll triggers
-- Stable DOM target relationships for animation tracks
-- Plugin registry, versioned manifests, editable parameters, event bus, dependency graph and compatibility resolution
-- Runtime permission model, trusted/untrusted module isolation and explicit lifecycle APIs
-- Resource ownership: scroll controllers, subscriptions, requestAnimationFrame, animation disposal, WebGL textures/materials/geometries
-- Three.js scene modules, static resource graph, richer project import
-- React/Puck or Craft.js adapter and Vue adapter with explicit editable/read-only boundaries
-- Build adapters for TS/JS modules and framework-specific toolchains
+浏览器核心和新手体验稳定后，再评估 PWA/桌面安装器、完整动画编排、更多模板、框架工程适配和组件市场。多人协作与云服务需要独立设计，不作为本轮交付承诺。
 
-## Phase 3 — open ecosystem
-
-- Remote module market, signed releases, update and rollback workflows
-- Optional AI-assisted page analysis and module reconstruction
-- Automatic layout/theme adaptation with reviewable source diffs
-- Team collaboration with conflict-aware commands
-- Electron packaging after browser core is reliable
-
-The project does not currently advertise GSAP/Three.js support merely by listing them as future dependencies. Each new capability must have a real source/save/export test and a documented compatibility boundary.
+任一功能进入“已完成”前，必须留下真实源码修改、保存重开、独立导出和对应版本验收证据；历史测试数量只保留在阶段记录。
