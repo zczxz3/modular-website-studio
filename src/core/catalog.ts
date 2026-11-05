@@ -1,5 +1,5 @@
 import {CURATED_BLOCKS,CURATED_NOTICE} from '../resources/curated';
-import {WEBSITE_ASSET_MODULES,WEBSITE_ASSET_NOTICE} from '../resources/website-assets-library';
+import {WEBSITE_ASSET_SNAPSHOT,WEBSITE_ASSET_NOTICE} from '../resources/website-assets-library';
 import type {Project,StudioModule} from './types';
 import type {ModuleCatalogSnapshot} from './resource-contract';
 import {INTERACTIVE_MODULES} from './interactions';
@@ -47,7 +47,7 @@ export const BASIC=[
   adapt('button-fill','填充按钮','来自 Button Atlas · 原生悬停反馈',original('button-fill').html.replace('Continue','继续探索')),
   projectCard,
   ...INTERACTIVE_MODULES,
-  ...WEBSITE_ASSET_MODULES
+  ...WEBSITE_ASSET_SNAPSHOT.resources.map(resource=>resource.module)
 ];
 export const NOTICES=`# Bundled resources\n\n${WEBSITE_ASSETS_NOTICE}\n\n${CURATED_NOTICE}\n\n${WEBSITE_ASSET_NOTICE}\n\nPortfolio layout, built-in tabs/accordion components and runtime, and tidal/arches SVG illustrations: original Modular Website Studio contributors, 2026, MIT. No third-party photography or fonts redistributed.\n\n${license}`;
 // All registered resources are local immutable snapshots; moving upstreams never modify projects.

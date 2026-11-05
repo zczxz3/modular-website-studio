@@ -1,6 +1,6 @@
 import type {ProjectFile,StudioModule} from './types';
 
-/** Transport-neutral contract for a future component repository adapter.
+/** Transport-neutral contract for bundled and explicitly imported catalogs.
  * It returns source files, never a second editable canvas model or executable
  * plugin hooks. Receiving code must validate modules and file paths before use.
  */
@@ -23,11 +23,13 @@ export interface ModuleCatalogProvider {
   loadSnapshot(revision:string,signal?:AbortSignal):Promise<ModuleCatalogSnapshot>;
 }
 
-/** Bundled static source. Network refresh and automatic upgrades remain deferred. */
+/** Bundled and explicitly imported offline sources; automatic updates are deferred. */
 export const BUNDLED_RESOURCE_SOURCES=[{
   id:'website-assets',
   repository:'https://github.com/zczxz3/website-assets',
   status:'bundled',
+  catalogPath:'studio/studio-catalog.json',
+  archivePath:'studio/studio-components.zip',
   kinds:['component']
 }] as const;
 

@@ -1,10 +1,13 @@
 {
   "schemaVersion": 1,
   "repository": "zczxz3/website-assets",
-  "revision": "cdaabdccfa9e4391e37450ef197e22e5f4eea83d",
+  "revision": "28dcb4e80b5df9e0c1e9c99c7d5015a1c7ae5441",
   "archive": "studio-components.zip",
-  "gitBlob": "a4e0022b0f62d3d46d28a748581bc6a111f40eaf",
-  "sha256": "e015138f31c82efd3313eb7ffecb61ef28f3b6e0d3c652f24d8ef3746ef1b562",
+  "gitBlob": "ad5fe67dceec8a327986fd409915ae0e920076e5",
+  "sha256": "853b25fc9aab1913258dfe5fc437d84005c7ead955035aa5ff395c928bf6f75a",
   "moduleCount": 31,
-  "policy": "Bundled immutable static snapshot. Runtime tarball and planned effects are excluded from the installable catalog. No network synchronization or automatic project upgrades."
+  "policy": "Bundled immutable static snapshot. Runtime tarball and planned effects are excluded from the installable catalog. No network synchronization or automatic project upgrades.",
+  "sourcePath": "studio/studio-components.zip",
+  "catalogPath": "studio/studio-catalog.json",
+  "integrationPath": "studio/STUDIO_INTEGRATION.md"
 }

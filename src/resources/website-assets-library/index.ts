@@ -4,14 +4,13 @@ import pin from './provenance.json';
 import license from './LICENSE.txt?raw';
 import type {StudioModule} from '../../core/types';
 import type {ModuleCatalogSnapshot} from '../../core/resource-contract';
+import {immutableCatalogProvider} from '../../core/module-catalog';
+import {adaptWebsiteAssetModule} from './adapter';
 
 // Existing beginner examples use mf-/qr- too. Namespace the new library so
 // mixing the original designs with those themed examples cannot replace CSS.
-export const WEBSITE_ASSET_MODULES:StudioModule[]=modules.map(module=>({
-  ...module,version:'1.0.1',
-  html:module.html.replace('class="mf-price">mf-pricing0 ','class="mf-price">¥0 ').replace(/class="([^"]*)"/g,(_all,classes:string)=>`class="${classes.split(/\s+/).map(name=>/^(mf-|qr-)/.test(name)?'wa-'+name:name).join(' ')}"`),
-  css:module.css.replace(/\.(mf-|qr-)/g,'.wa-$1').replace(/\bmf-(spin|shimmer|orbit)\b/g,'wa-mf-$1')
-}));
+export const WEBSITE_ASSET_MODULES:StudioModule[]=modules.map(adaptWebsiteAssetModule);
+export const WEBSITE_ASSET_ORIGIN={repository:pin.repository,revision:pin.revision,path:pin.sourcePath,count:modules.length};
 export const WEBSITE_ASSET_CATEGORIES:Record<string,string>={Forms:'表单控件',Disclosure:'展开内容',Navigation:'导航链接',Cards:'内容卡片',Data:'数据展示',Feedback:'状态反馈',Layout:'布局容器',Buttons:'动效按钮',Portfolio:'作品展示'};
 // Presentation metadata only. Raw upstream manifests remain in modules.json and the archive.
 const labels:Record<string,[string,string]>={
@@ -51,5 +50,6 @@ export const WEBSITE_ASSET_META:Record<string,{name:string;description:string;ca
   const [name,description]=labels[record.id.split('/').pop()!]||[record.name,record.limitations];
   return [record.id,{name,description,category:record.category,originalName:record.name}];
 }));
-export const WEBSITE_ASSET_NOTICE=`Website Assets static library: https://github.com/${pin.repository}/tree/${pin.revision}\n31 static modules retain upstream IDs. Studio adaptations @1.0.1 prefix mf-/qr- CSS classes and named keyframes with wa- to coexist with older themed examples; foundation/pricing also corrects the upstream sample amount mf-pricing0 to ¥0. Chinese labels are presentation metadata. Original HTML, CSS and manifests remain in the pinned archive and modules.json. Runtime tarball and planned effects are excluded. Projects keep their saved manifests; no automatic upgrades.\n\n${license}`;
+export const WEBSITE_ASSET_NOTICE=`Website Assets static library: https://github.com/${pin.repository}/tree/${pin.revision}\nSource: ${pin.sourcePath}\n${modules.length} static modules retain upstream IDs. Studio adaptations @1.0.1 prefix mf-/qr- CSS classes and named keyframes with wa- to coexist with older themed examples; foundation/pricing also corrects the upstream sample amount mf-pricing0 to ¥0. Chinese labels are presentation metadata. Original HTML, CSS and manifests remain in the pinned archive and modules.json. Runtime tarball and planned effects are excluded. Projects keep their saved manifests; no automatic upgrades.\n\n${license}`;
 export const WEBSITE_ASSET_SNAPSHOT:ModuleCatalogSnapshot={schemaVersion:1,providerId:'website-assets',revision:pin.revision,resources:WEBSITE_ASSET_MODULES.map(module=>({kind:'component',module})),files:{},notice:WEBSITE_ASSET_NOTICE};
+export const WEBSITE_ASSET_PROVIDER=immutableCatalogProvider(WEBSITE_ASSET_SNAPSHOT);

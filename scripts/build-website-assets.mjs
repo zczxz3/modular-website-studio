@@ -18,7 +18,7 @@ const modules=catalog.modules.map(record=>{
   return module;
 });
 // No runtime files, planned effects, generated source identities or HTML rewrites.
-const outputs={'modules.json':JSON.stringify(modules,null,2)+'\n','catalog.json':strFromU8(archive['studio-catalog.json']),'LICENSE.txt':strFromU8(archive.LICENSE)};
+const outputs={'modules.json':JSON.stringify(modules,null,2)+'\n','catalog.json':strFromU8(archive['studio-catalog.json']),'shelf.json':strFromU8(archive['studio-shelf.mws.json']),'LICENSE.txt':strFromU8(archive.LICENSE)};
 for(const [name,content]of Object.entries(outputs)){
   if(process.argv.includes('--check')){if(await readFile(new URL(name,root),'utf8')!==content)throw new Error('Rebuild the reviewed static snapshot: '+name);}
   else await writeFile(new URL(name,root),content);

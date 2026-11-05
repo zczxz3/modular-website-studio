@@ -64,9 +64,8 @@ function withResources(project:Project){
   return {project:p,assets};
 }
 export function insertResource(project:Project,id:string,point:{parentId:string;beforeId?:string}){
-  const bundled=RESOURCES.find(m=>m.id===id);if(!bundled)throw new Error('内置资源不存在。');
   // Catalogue updates must not silently upgrade an existing project's instances.
-  const module=project.modules.find(m=>m.id===id)||bundled;
+  const module=project.modules.find(m=>m.id===id)||RESOURCES.find(m=>m.id===id);if(!module)throw new Error('资源不存在。');
   const resources=withResources(project);let p=resources.project;if(!p.files[THEME_FILE])p=applyTheme(p,'paper');
   // The manifest is canonical; only this insertion's HTML uses page-relative assets.
   p=insertModule(p,{...module,html:module.html.replace(/src="(assets\/[^"]+)"/g,(_all,path:string)=>`src="${relativePath(p.entry,resources.assets[path]||path)}"`)},point.parentId,point.beforeId);
