@@ -2,7 +2,7 @@
 
 **面向新手的开源网站创作工作台：选模板、改内容、拖组件、加特效，导出自己的网站。**
 
-[下载使用版](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.1) · [第一次做网站](docs/guides/first-website.md) · [功能现状](docs/status.md) · [开发文档](docs/development/README.md) · [更新日志](CHANGELOG.md)
+[下载使用版](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.2) · [第一次做网站](docs/guides/first-website.md) · [功能现状](docs/status.md) · [开发文档](docs/development/README.md) · [更新日志](CHANGELOG.md)
 
 ![工作台界面：左侧组件、中间画布、右侧属性](docs/screenshots/interface-workspace.png)
 
@@ -36,7 +36,7 @@
 | --- | --- | --- |
 | 模板起步 | 中文作品集、空白作品、源码示例 | [新手指南](docs/guides/first-website.md) |
 | 图片与背景 | 上传、Cropper.js 裁剪、Grapick 渐变、本地批量素材 | [图片与渐变](docs/p0-visual-tools.md) |
-| 组件与区块 | 共 41 个目录项：31 个 website-assets 模块 + 10 个工作台组件/区块 | [资源接入与分类](docs/resource-sync.md) |
+| 组件与区块 | 内置 41 个目录项；支持整包导入和打开两页组件展架 | [资源接入与分类](docs/resource-sync.md) |
 | 画布编辑 | 结构排序、自由移动/尺寸调整、Moveable + Selecto 多选变换 | [P1–P4 使用范围](docs/p1-p4.md) |
 | 特效 | CSS 外观效果、AOS 滚动动画、AnimXYZ 组合预设 | [P1–P4 使用范围](docs/p1-p4.md) |
 | 保存与导出 | 浏览器草稿、可编辑工程、完整网站 ZIP、受支持的单页 HTML | [保存与交付](docs/guides/first-website.md#保存和交付有什么区别) |
