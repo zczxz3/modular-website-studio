@@ -2,7 +2,7 @@
 
 更新日期：2026-11-05（UTC+8）。[项目首页](../README.md) · [新手指南](guides/first-website.md) · [路线图](roadmap.md)
 
-当前为 **0.1.0 alpha**，本次集中发行标记为 **v0.1.0-alpha.1**。主要创作功能已在主分支，使用版由静态网页和本地 Node 服务组成；尚无原生安装器和在线创作地址。
+当前为 **0.1.0 alpha**，本次集中发行标记为 **v0.1.0-alpha.2**。主要创作功能已在主分支，使用版由静态网页和本地 Node 服务组成；尚无原生安装器和在线创作地址。
 
 ## 已可使用
 
@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | 模板 | 中文四页作品集、空白作品、源码示例；姓名、两张封面与作品排序 | `src/templates/`、`src/core/catalog.ts` |
 | 内容与样式 | 文字、属性、颜色、背景、渐变、尺寸、间距、圆角；图片上传/裁剪 | `src/components/`、`src/core/commands.ts` |
-| 组件与区块 | 31 个 website-assets 原版模块 + 7 个工作台组件 + 3 个区块，共 41 个目录项 | `src/resources/`、`src/core/catalog.ts` |
+| 组件与区块 | 31 个 website-assets 原版模块 + 7 个工作台组件 + 3 个区块，共 41 个目录项 | `src/resources/`、`src/core/catalog.ts`；支持集合 ZIP 导入与原生展架 |
 | 画布 | 结构排序与嵌套、自由移动/尺寸调整、多选变换/旋转/吸附、同父级左/顶对齐 | `src/preview/`、`src/components/Canvas.tsx` |
 | 特效 | CSS 悬停/外观、AOS 滚动配置、AnimXYZ 的 3 组组合预设 | `src/core/aos.ts`、`xyz.ts`、`effects.ts` |
 | 素材 | 本地批量图片、去重、搜索、替换、引用检查和删除 | `src/core/assets.ts`、`src/components/AssetLibrary.tsx` |
@@ -25,7 +25,7 @@
 
 | 项目 | 当前处理 |
 | --- | --- |
-| website-assets 自动同步、升级与回滚 | 固定版本快照；保留 `ModuleCatalogProvider.loadSnapshot`，不在打开工程时自动替换组件 |
+| website-assets 自动同步、升级与回滚 | 固定版本快照；`ModuleCatalogProvider.loadSnapshot` 已接入离线集合；联网同步/升级预留，不在打开工程时替换组件 |
 | 任意 JS/WebGL 模块 | 静态模块校验不放宽；后续单独设计 mount/update/destroy、依赖与权限协议 |
 | 完整动画时间轴、3D 编辑 | 尚未实现，现有预设不等同于完整编排系统 |
 | React/Vue 工程适配与 TS 构建 | 尚未实现；代码编辑不等同于框架编译 |

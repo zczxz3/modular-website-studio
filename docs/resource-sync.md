@@ -22,15 +22,29 @@ Studio 现在内置同账号仓库 `zczxz3/website-assets` 的 31 个兼容静�
 
 现有 10 个工作台模块继续保留，其中组件 7 个、区块 3 个。总目录因此为 41 项，其中 5 个新手适配示例与原版组件有实现重合；本轮不是重新实现 31 个组件。
 
+## 整理后的接口与整包导入
+
+上游按 `studio/` 集中提供 `studio-catalog.json`、`studio-components.zip`、`studio-shelf.mws.json` 和 `STUDIO_INTEGRATION.md`。31 个静态模块的 manifest 与此前内置版本相同，本次不增加虚构的组件数量。
+
+- 首页「打开组件展架」直接复用上游两页原生工程；每次创建独立项目，可修改、保存、导出。保留原始 `shelf.json`，运行时复用已有类名/动画命名空间适配。
+- 左侧「组件」→「导入组件集合 ZIP」，可直接选择上游 `studio-components.zip`，无需解压后逐个选择子包。
+- 使用现有 `ModuleCatalogProvider.loadSnapshot(revision, signal)` 返回 `ModuleCatalogSnapshot`。本地集合以整个 ZIP 的 SHA-256 为不可变 revision；请求其他版本或取消时拒绝，不访问移动分支。
+- 确认前逐个检查 catalog、静态标记、稳定 ID、子包 SHA-256 和原模块校验器。嵌套内容合计限制为 20MB / 500 文件；坏包、脚本、权限、重复 ID 或文件冲突会整体失败。
+- 导入只注册组件，不一次塞进画布；一次撤销可恢复。新 ID 出现在「工程组件」，仍通过原 `insertResource` / `insertModule` 事务插入；相同 ID 保留工程原版本与手改 CSS。
+- 根许可证与各子包许可证进入工程来源记录，并随网站 ZIP 和单 HTML 注释保存；不会把 runtime tarball 或 planned effects 安装进工程。
+
+单模块 ZIP 继续使用高级编辑中的「安装模块 ZIP」。整包导入和展架是现有接口的消费者适配，不会修改上游格式，也不启用远程自动同步。
+
 ## 固定版本与来源
 
 | 项目 | 记录 |
 | --- | --- |
 | 来源仓库 | https://github.com/zczxz3/website-assets |
-| 固定提交 | `cdaabdccfa9e4391e37450ef197e22e5f4eea83d` |
+| 固定提交 | `28dcb4e80b5df9e0c1e9c99c7d5015a1c7ae5441` |
+| 上游接口路径 | `studio/studio-catalog.json`、`studio/studio-components.zip` |
 | 原始发行包 | `src/resources/website-assets-library/upstream/studio-components.zip` |
-| Git blob | `a4e0022b0f62d3d46d28a748581bc6a111f40eaf` |
-| SHA-256 | `e015138f31c82efd3313eb7ffecb61ef28f3b6e0d3c652f24d8ef3746ef1b562` |
+| Git blob | `ad5fe67dceec8a327986fd409915ae0e920076e5` |
+| SHA-256 | `853b25fc9aab1913258dfe5fc437d84005c7ead955035aa5ff395c928bf6f75a` |
 | 原始目录与 manifest | 同目录的 `catalog.json`、`modules.json` |
 | 本地接入与中文标签 | 同目录的 `index.ts` |
 
@@ -50,9 +64,13 @@ MIT 许可证保留在原始组件 CSS、来源目录和工程 notices 中，因
 
 发行包中的运行时动效 tarball 和 E01–E20 待实现方案没有注册为可添加模块。编辑画布仍不运行工程脚本，普通模块仍拒绝脚本、内联事件、权限及外部依赖。
 
-`ModuleCatalogProvider.loadSnapshot(revision, signal)` 继续保留，供后续显式导入/更新使用。任意 JS 动效需要独立的 mount/update/destroy、稳定目标绑定、预览/导出与资源释放契约；网络同步、自动升级和平台安装保持后置。
+`ModuleCatalogProvider.loadSnapshot(revision, signal)` 已用于固定内置快照和显式离线集合导入；联网加载、同步和升级继续预留。任意 JS 动效需要独立的 mount/update/destroy、稳定目标绑定、预览/导出与资源释放契约；网络同步、自动升级和平台安装保持后置。
 
 ## 验证
+
+本次新增 `tests/module-catalog.test.ts` 和 `e2e/catalog-provider.spec.ts`，覆盖 provider 的固定版本/取消、坏包拒绝、整包注册的原子性、旧样式保留、新 ID 插入、原生展架与独立导出。当前提交的准确结果以 CI 为准；本地 Chromium 启动被运行环境的 socket 限制阻止，没有把该次浏览器尝试标记为通过。
+
+### 初次内置组件库的历史结果
 
 新增源码回归逐个检查全部 31 个组件的验证、重复插入、跨页单 CSS 引用、撤销/重做、工程保存重开、网站 ZIP 与独立 HTML 导出；另检查目录边界与已有工程样式保护。
 

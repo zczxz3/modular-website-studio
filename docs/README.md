@@ -1,6 +1,6 @@
 # 文档总目录
 
-[项目首页](../README.md) · [下载版本](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.1) · [更新日志](../CHANGELOG.md)
+[项目首页](../README.md) · [下载版本](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.2) · [更新日志](../CHANGELOG.md)
 
 先选择你的目标。**当前状态以 [功能现状](status.md) 为准，历史记录只证明其对应版本。**
 

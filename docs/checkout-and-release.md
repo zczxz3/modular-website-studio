@@ -2,7 +2,7 @@
 
 ## 下载入口
 
-当前主分支已整合完整源码，P0–P4 与 31 个静态模块无需切换开发分支。[GitHub Release](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.1) 提供使用版和源码包；使用步骤见 [第一次做网站](guides/first-website.md)。
+当前主分支已整合完整源码，P0–P4 与 31 个静态模块无需切换开发分支。[GitHub Release](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.2) 提供使用版和源码包；使用步骤见 [第一次做网站](guides/first-website.md)。
 
 源码、模板、许可证和测试以普通文件提交，无需初始化子模块。用户原来报告的空目录未提供本机路径，不能由此断定具体原因；下面提供保留旧目录的安全恢复步骤。
 
