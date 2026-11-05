@@ -255,5 +255,8 @@ export function exportSingleHtml(project:Project):string {
   const source=sourceText(project);if(!source)throw new SingleHtmlExportError([`入口页面不存在或不是文本：${project.entry}`]);
   const output=markup(source,project.entry);
   if(issues.size)throw new SingleHtmlExportError(issues);
-  return output;
+  // A collection's root and per-module licenses may live outside its CSS.
+  // Preserve those notices in single-page delivery as well as the website ZIP.
+  const notices=Object.entries(project.files).filter(([path,file])=>file.kind==='text'&&(/^(?:THIRD_PARTY_NOTICES\.md|WEBSITE_ASSETS_SOURCE\.txt)$/.test(path)||/^notices\/catalog-[a-f0-9]+\.txt$/.test(path))).map(([,file])=>file.content.replaceAll('--','- -').replaceAll('<','&lt;')).filter(text=>text&&!output.includes(text));
+  return notices.length?output+'\n<!-- Studio resource notices\n'+[...new Set(notices)].join('\n\n')+'\n-->':output;
 }
