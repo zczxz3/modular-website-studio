@@ -1,5 +1,7 @@
 # Dragging CSS/JS components and saving HTML
 
+> 阶段记录：以下测试数量、分支和范围属于记录时的版本。当前功能与发布状态见 [项目现状](status.md)，操作入口见 [新手指南](guides/first-website.md)。
+
 This iteration continues `feat/portfolio-workbench`. It adds live drag feedback, two controlled interactive components, copied local styles and single-file HTML export while keeping source files authoritative. The external resource repository still has only a reserved integration interface and frozen local examples.
 
 ## Implemented flow

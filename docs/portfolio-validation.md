@@ -1,5 +1,7 @@
 # Beginner portfolio workbench validation
 
+> 阶段记录：以下测试数量、分支和范围属于记录时的版本。当前功能与发布状态见 [项目现状](status.md)，操作入口见 [新手指南](guides/first-website.md)。
+
 This change builds on the module-roundtrip repair branch (PR #1). It keeps source files, stable IDs, ProjectStore transactions, strict static-module validation and the isolated editing iframe as the existing foundation.
 
 ## User flow

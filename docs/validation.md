@@ -1,5 +1,7 @@
 # Validation record
 
+> 阶段记录：以下测试数量、分支和范围属于记录时的版本。当前功能与发布状态见 [项目现状](status.md)，操作入口见 [新手指南](guides/first-website.md)。
+
 Date: **2026-11-04**. This record distinguishes executed checks from future coverage.
 
 This page records the original source-editor baseline and its historical CI run. For subsequent work, see [portfolio validation](portfolio-validation.md) and the current [drag/component and single-HTML validation](drag-html-validation.md); the baseline browser result does not certify those later changes.
