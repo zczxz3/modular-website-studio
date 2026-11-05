@@ -4,7 +4,7 @@
 
 ## 1. 打开工作台
 
-在 [版本下载页](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.1) 下载 `modular-website-studio-web.zip`，安装 Node.js 22.12+，把 ZIP 完整解压到一个普通文件夹。
+在 [版本下载页](https://github.com/zczxz3/modular-website-studio/releases/tag/v0.1.0-alpha.2) 下载 `modular-website-studio-web.zip`，安装 Node.js 22.12+，把 ZIP 完整解压到一个普通文件夹。
 
 - Windows：双击 `start.cmd`。
 - macOS / Linux：在解压目录运行 `sh start.sh`。
@@ -25,7 +25,11 @@
 
 左侧「素材」支持批量图片导入；每批最多 30 张、20MB，单张不超过 10MB。选中画布图片后可使用素材，引用中的图片不能直接删除。
 
+也可从首页「打开组件展架」，直接修改上游已排好的两页组件示例；这是独立工程，不会覆盖已有草稿。
+
 左侧「组件」选择「我的组件库 · 31」，按中文名称、用途或 ID 搜索，拖入画布或点击添加。左侧「区块」提供已配好布局的图文、行动区和数据区。表单只是前端控件，提交服务需要另行接入。
+
+更新本地组件时，点击「导入组件集合 ZIP」，直接选择 website-assets 的 `studio/studio-components.zip`。校验后确认导入，新组件在「工程组件」中出现；已有 ID 保留原版本和样式。此操作可撤销，不会自动升级当前页面。
 
 ## 4. 调整排列和外观
 
